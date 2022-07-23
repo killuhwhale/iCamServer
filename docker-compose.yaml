@@ -38,6 +38,9 @@ services:
     #   - ./esp32server/settings.ini probably can use another file type....
 
     image: killuhwhale/camserver_api:latest
+    volumes:
+      - apiVolume:/app/api/vol
+
     # ports : port1:port2 tells the container to listen to which port. Port1 can be any unoccupied port but port2 must be the port you would have used if you would be running your app on localhost. To maintain symmetry I have used the same port number on port1 and port2.
     ports:
       - "8000:8000"
@@ -58,6 +61,10 @@ services:
       - esp32server
     networks:
       - db-net
+
+volumes:
+  apiVolume:
+
 
 networks:
   db-net:
